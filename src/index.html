@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <title>Namegen</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" href="/bootstrap.min.css" rel="stylesheet" />
+    <link type="text/css" href="/bootstrap-responsive.min.css" rel="stylesheet" />
+	
+	<style type="text/css">
+		#input {
+			display:none;
+		}
+	</style>
+</head>
+<body>	
+	<div id="loading" class="row">
+         <div class="span12">
+			<div class="progress progress-striped active">
+				<div class="bar" style="width: 0%;"></div>
+			</div>
+		</div>
+	</div>
+	
+	<div id="input" class="row">
+         <div class="span12">
+			<form>
+				<input id="generate" type="button" class="btn btn-primary" value="Generate name" />
+			</form>
+		</div>
+		<div class="span12">
+		<h2 id="result"></h2>
+		</div>
+	</div>
+	
+	<script type="text/javascript" src="/jquery-2.0.2.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+			$("#generate").click(function() {
+				worker.postMessage({messageType:"generate",maxLength:10});
+			});
+		
+			var result = $("#result");
+			var progress = $(".bar");
+			var worker = new Worker("markov-builder.js");
+			worker.addEventListener("message",function(evt) {
+				if (evt.data.messageType==="progress") {
+					if (evt.data.progress<100) {
+						progress.css("width",evt.data.progress+"%");
+					}
+					else
+					{
+						$("#loading").hide();
+						$("#input").show();
+					}
+				}
+				else if (evt.data.messageType==="generate")
+				{
+					result.html(evt.data.word);
+				}
+			},false);
+			worker.postMessage({messageType:"load"});
+		});
+    </script>
+</body>
+</html>
