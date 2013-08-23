@@ -5,9 +5,7 @@ A Javascript library which allows you to easily create [Markov chains](http://en
 ## Usage
 
 ```Javascript
-// the more words in the dictionary, the more varied and
-// interesting the output will be
-var dictionary = ["hello","foswig"];
+
 
 // Create the markov chain and specify the Order of the markov chain.
 // The order (an integer > 0) indicates how many previous letters are 
@@ -17,13 +15,16 @@ var dictionary = ["hello","foswig"];
 // in the original dictionary.
 var chain = new foswig.MarkovChain(3);
 
-//load the words into the markov chain
-for (var i=0;i<dictionary.length;++i) {
-  chain.addWordToChain(dictionary[i]);
-}
+// add words into the markov chain one at a time
+chain.addWordToChain("random");
 
-// generate a random word with a maximum of 10 letters
-var randomWord = chain.generateWord(10);
+//OR add all the words in an array at once
+var dictionary = ["hello","foswig"];
+chain.addWordsToChain(dictionary);
+  
+// generate a random word with a minimum of 5 characters, a maximum of 10 letters, 
+// and that cannot be a match to any of the input dictionaries words
+var randomWord = chain.generateWord(5,10,false);
 ```
 
 ## License
