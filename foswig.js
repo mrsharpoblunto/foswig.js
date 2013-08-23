@@ -1,4 +1,8 @@
-var MarkovChain = function(order)
+(function(global){
+
+global.foswig = {};
+
+global.foswig.MarkovChain = function(order)
 {
 	var Node = function(ch) {
 		this.character = ch;
@@ -32,7 +36,7 @@ var MarkovChain = function(order)
 		}
 		//link to end node.
 		previousNode.neighbors.push(null);
-	}
+	};
 	
 	this.generateWord = function(maxLength) {
 		var word;
@@ -50,30 +54,13 @@ var MarkovChain = function(order)
 		}
 		while (words[word]);
 		return word;
-	}
+	};
 };
 
-var chain = null;
+if (typeof global.define === "function" && global.define.amd) {
+  global.define("foswig", [], function() {
+    return global.foswig;
+  });
+}
 
-self.addEventListener('message', function(e) {
-	if (e.data.messageType === "load") {
-		//get the list of dictionary words
-		var req = new XMLHttpRequest();  
-		req.open('GET', "/javascript-dictionary.js", false); 
-		req.send( null ); 
-		var data = JSON.parse(req.responseText);
-			
-		chain = new MarkovChain(3);
-
-		//load the words into the markov chain
-		var total = data.words.length;
-		for (var i=0;i<data.words.length;++i) {
-			chain.addWordToChain(data.words[i]);
-			postMessage({messageType:"progress",progress:Math.floor((i/total)*100)});
-		}
-		postMessage({messageType:"progress",progress:100});
-	}
-	else if (e.data.messageType === "generate" && chain) {
-		postMessage({messageType:"generate",word:chain.generateWord(e.data.maxLength)});
-	}
-},false);
+}(typeof(window)!=="undefined" ? window : this));
