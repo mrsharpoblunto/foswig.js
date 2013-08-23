@@ -1,4 +1,4 @@
-importScripts("foswig.js");
+importScripts("foswig.min.js");
 
 var chain = null;
 
@@ -13,14 +13,10 @@ self.addEventListener('message', function(e) {
 		chain = new foswig.MarkovChain(3);
 
 		//load the words into the markov chain
-		var total = data.words.length;
-		for (var i=0;i<data.words.length;++i) {
-			chain.addWordToChain(data.words[i]);
-			postMessage({messageType:"progress",progress:Math.floor((i/total)*100)});
-		}
-		postMessage({messageType:"progress",progress:100});
+		chain.addWordsToChain(data.words);
+		postMessage({messageType:"loaded"});
 	}
 	else if (e.data.messageType === "generate" && chain) {
-		postMessage({messageType:"generate",word:chain.generateWord(e.data.maxLength)});
+		postMessage({messageType:"generate",word:chain.generateWord(e.data.minLength,e.data.maxLength,false)});
 	}
 },false);
