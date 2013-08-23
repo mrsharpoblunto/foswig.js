@@ -2,34 +2,87 @@
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-    <title>Namegen</title>
+    <title>Random Github project name generator</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link type="text/css" href="bootstrap.min.css" rel="stylesheet" />
     <link type="text/css" href="bootstrap-responsive.min.css" rel="stylesheet" />
 	
 	<style type="text/css">
+		body {
+			text-align:center;
+		}
+		
 		#input {
+			margin-top:50px;
+			margin-bottom:75px;
 			display:none;
+		}
+		
+		#loading {
+			margin-top:50px;
+			margin-bottom:75px;
+		}
+		
+		.separator {
+			margin: 25px auto;
+			background: #ccc;
+			height: 1px;
+			width: 15%;
+		}
+		
+		.copyright
+		{
+			font-size:12px;
+			color:#bbb;
 		}
 	</style>
 </head>
-<body>	
-	<div id="loading" class="row">
-         <div class="span12">
-			<div class="progress progress-striped active">
-				<div class="bar" style="width: 0%;"></div>
+<body>
+	<div class="container">
+	
+		<div  class="row">
+			<div class="span12">
+				<div class="page-header">
+				<h1>Generate awesome Javascript project names</h1>
+				</div>
+				<p>Have you just put the finishing touches on a sweet open source JS library that is going to be the toast of Hacker News but can't think of a suitably cool name?</p>
+				<p>Don't worry, This site has aggregated a list of all the popular JavaScript library names on GitHub and put them into a <a href="http://en.wikipedia.org/wiki/Markov_chain">Markov Chain</a> which allows for the creation of convincing randomly generated names that (for the most part) sound like real words. The code to generate the Markov Chain from the input dictionary is called Foswig.js and is available <a href="https://github.com/mrsharpoblunto/foswig.js/">here</a>.</p>
 			</div>
 		</div>
-	</div>
-	
-	<div id="input" class="row">
-         <div class="span12">
-			<form>
-				<input id="generate" type="button" class="btn btn-primary" value="Generate name" />
-			</form>
+		
+		<div id="loading" class="row">
+			 <div class="span12">
+				<div class="progress progress-striped active">
+					<div class="bar" style="width: 0%;"></div>
+				</div>
+			</div>
 		</div>
-		<div class="span12">
-		<h2 id="result"></h2>
+		
+		<div id="input" class="row">
+			 <div class="span12">
+				<form>
+					<input id="generate" type="button" class="btn-large btn-primary" value="Generate project name" />
+				</form>
+			</div>
+			<div class="span12">
+			<h2 id="result"></h2>
+			</div>
+		</div>
+
+		<div class="share row">
+			<div class="span12">
+				<iframe src="http://ghbtns.com/github-btn.html?user=mrsharpoblunto&repo=foswig.js&type=watch&count=false"
+			  allowtransparency="true" frameborder="0" scrolling="0" width="55" height="20"></iframe>
+				<iframe src="http://ghbtns.com/github-btn.html?user=mrsharpoblunto&type=follow&count=true"
+			  allowtransparency="true" frameborder="0" scrolling="0" width="175" height="20"></iframe>	
+				<a href="https://twitter.com/mr_sharpoblunto" class="twitter-follow-button" data-show-count="false" data-lang="en">Follow @mr_sharpoblunto</a>
+			</div>
+		</div>
+		
+		<div class="copyright row">
+			 <div class="span12">
+				&copy; <a href="http://www.sharpoblunto.com">Glenn Conner</a> 2013.
+			 </div>
 		</div>
 	</div>
 	
@@ -62,5 +115,19 @@
 			worker.postMessage({messageType:"load"});
 		});
     </script>
+	
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>	
+	
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-3061240-15']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
 </body>
 </html>
