@@ -1,0 +1,32 @@
+{
+  "name": "foswig",
+  "version": "1.0.0",
+  "description": "A library that can generate legible pseudo random words based off an input dictionary using markov chains",
+  "main": "foswig.js",
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "^1.9.1",
+    "del": "^0.1.1",
+    "gulp": "^3.8.5",
+    "gulp-browserify": "^0.5.0",
+    "gulp-uglify": "^0.3.1",
+    "mocha": "^1.20.1"
+  },
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha tests/tests.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mrsharpoblunto/foswig.js.git"
+  },
+  "keywords": [
+    "markov",
+    "random"
+  ],
+  "author": "Glenn Conner",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mrsharpoblunto/foswig.js/issues"
+  },
+  "homepage": "https://github.com/mrsharpoblunto/foswig.js"
+}
