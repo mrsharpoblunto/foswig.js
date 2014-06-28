@@ -1,5 +1,5 @@
 var expect = require('chai').expect;
-var Foswig = require('./foswig');
+var Foswig = require('../foswig');
 var dictionary = require('./dictionary');
 
 describe('Foswig',function() {
