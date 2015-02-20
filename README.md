@@ -30,7 +30,7 @@ chain.addWordsToChain(dictionary);
 // generate a random word with a minimum of 5 characters, a maximum of 10 letters, 
 // and that cannot be a match to any of the input dictionaries words
 // NOTE: if it is not possible to generate the desired word length from the input dictionary, then
-// this method may not complete
+// this method will throw an Error after 25 failed attempts.
 var randomWord = chain.generateWord(5,10,true);
 ```
 
