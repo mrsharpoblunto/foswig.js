@@ -9,7 +9,16 @@ describe('Foswig',function() {
 			markov.addWordsToChain(dictionary);
 
 			for (var i = 0;i < 100; ++i) {
-				var word = markov.generateWord(2,5,true,100);
+                while (true) {
+                    try {
+                        var word = markov.generateWord(2,5,true);
+                        break;
+                    } catch (err) {
+                        // sometimes the word generator cannot satisfy the 
+                        // length constraints in the default number of attempts.
+                        // This is expected, so we'll just try again
+                    }
+                }
 				expect(word.length).to.be.at.least(2);
 				expect(word.length).to.be.at.most(5);
 				//console.log(word);
@@ -21,7 +30,14 @@ describe('Foswig',function() {
 			markov.addWordsToChain(dictionary);
 
 			for (var i = 0;i < 100; ++i) {
-				var word = markov.generateWord(2,5,false,100);
+                try {
+                    var word = markov.generateWord(2,5,false);
+                    break;
+                } catch (err) {
+                    // sometimes the word generator cannot satisfy the 
+                    // length constraints in the default number of attempts.
+                    // This is expected, so we'll just try again
+                }
 				expect([word]).to.not.have.members(dictionary);
 				//console.log(word);
 			}
