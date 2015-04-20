@@ -33,8 +33,8 @@ chain.addWordsToChain(dictionary);
 // dictionary, then this method will throw an Error after 25 failed attempts. This 
 // can be customized by adding a final parameter to the method indicating the maximum 
 // number of attempts to make when generating a word. 
-//     e.g. chain.generateWord(5,10,true,100); for 100 attempts
-var randomWord = chain.generateWord(5,10,true);
+//     e.g. chain.generateWord(5,10,false,100); for 100 attempts
+var randomWord = chain.generateWord(5,10,false);
 ```
 
 ## License
