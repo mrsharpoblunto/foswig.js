@@ -3,6 +3,7 @@
   "version": "1.1.1",
   "description": "A library that can generate legible pseudo random words based off an input dictionary using markov chains",
   "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
   "dependencies": {},
   "devDependencies": {
     "chai": "^1.9.1",
