@@ -14,7 +14,7 @@
     "mocha": "^1.20.1"
   },
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha tests/tests.js"
+    "test": "mocha tests/tests.js"
   },
   "repository": {
     "type": "git",
