@@ -62,6 +62,13 @@ describe('Foswig',function() {
 				//console.log(word);
 			}
 		});
+
+		it('should throw when minLength is too high',function() {
+			var markov = new Foswig(2);
+			markov.addWordsToChain(dictionary);
+
+            expect(() => markov.generateWord(1000,1010,true)).to.throw();
+		});
 	});
 });
 
