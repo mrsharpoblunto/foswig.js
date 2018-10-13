@@ -42,6 +42,26 @@ describe('Foswig',function() {
 				//console.log(word);
 			}
 		});
+
+		it('should generate words of the correct length when maxLength is -1',function() {
+			var markov = new Foswig(2);
+			markov.addWordsToChain(dictionary);
+
+			for (var i = 0;i < 100; ++i) {
+                while (true) {
+                    try {
+                        var word = markov.generateWord(2,-1,true);
+                        break;
+                    } catch (err) {
+                        // sometimes the word generator cannot satisfy the 
+                        // length constraints in the default number of attempts.
+                        // This is expected, so we'll just try again
+                    }
+                }
+				expect(word.length).to.be.at.least(2);
+				//console.log(word);
+			}
+		});
 	});
 });
 
