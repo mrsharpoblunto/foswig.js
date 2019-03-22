@@ -12,28 +12,31 @@ This library can be used from Node.js, or from the browser using the Browserify'
 ```javascript
 var Foswig = require('foswig');
 
-// Create the markov chain and specify the Order of the markov chain.
-// The order (an integer > 0) indicates how many previous letters are 
-// taken into account when selecting the next. A smaller order will
-// result in more randomized less recognizeable output. Conversely a
-// higher order will result in words which resemble more closely those
+// Create the Markov chain and specify the order of the chain.
+// The order (an integer that is greater than 0) indicates how many previous letters are 
+// taken into account when selecting the next one. A smaller order will
+// result in a more randomized, less recognizeable output. Also, a
+// higher order will result in words which resemble more closely to those
 // in the original dictionary.
 var chain = new Foswig(3);
 
-// add words into the markov chain one at a time
+// Add words into the Markov chain one at a time:
 chain.addWordToChain("random");
 
-//OR add all the words in an array at once
+//OR add all the words in an array at once:
 var dictionary = ["hello","foswig"];
 chain.addWordsToChain(dictionary);
   
-// generate a random word with a minimum of 5 characters, a maximum of 10 letters, 
-// and that cannot be a match to any of the input dictionaries words. 
-// NOTE: if it is not possible to generate the desired word length from the input 
+// Generate a random word with a minimum of 5 characters, a maximum of 10 letters, 
+// and that cannot be a match to any of the input dictionaries words.
+//
+// NOTE: If it is not possible to generate the desired word length from the input 
 // dictionary, then this method will throw an Error after 25 failed attempts. This 
 // can be customized by adding a final parameter to the method indicating the maximum 
 // number of attempts to make when generating a word. 
+//
 //     e.g. chain.generateWord(5,10,false,100); for 100 attempts
+//
 var randomWord = chain.generateWord(5,10,false);
 ```
 
