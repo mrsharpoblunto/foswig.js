@@ -49,3 +49,16 @@ test('should generate words of the correct length when no maxLength is specified
     expect(word.length).toBeGreaterThanOrEqual(2);
   }
 });
+
+test('should bail out when minLength constraint cannot be satisfied', function () {
+  var markov = new MarkovChain(2);
+  markov.addWordsToChain(words);
+
+  for (var i = 0; i < 100; ++i) {
+    expect(() =>
+      markov.generateWord({
+        minLength: 1000,
+      }),
+    ).toThrow();
+  }
+});
