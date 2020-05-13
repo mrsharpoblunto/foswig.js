@@ -10,20 +10,17 @@ A JavaScript library which allows you to easily create [Markov chains](http://en
 ```javascript
 import Foswig from 'foswig';
 
-// Create the Markov chain and specify the order of the chain.
-// The order (an integer that is greater than 0) indicates how many previous letters are 
-// taken into account when selecting the next one. A smaller order will
-// result in a more randomized, less recognizeable output. Also, a
-// higher order will result in words which resemble more closely to those
-// in the original dictionary.
-const chain = new Foswig(3);
+// Create the Markov chain and specify the order of the chain & input dictionary
+// The order (an integer that is greater than 0) indicates how many previous 
+// letters are taken into account when selecting the next one. A smaller order 
+// will result in a more randomized, less recognizeable output. Also, a higher 
+// order will result in words which resemble more closely to those in the original 
+//dictionary.
+const chain = new Foswig(3, [
+  "hello",
+  "foswig",
+]);
 
-// Add words into the Markov chain one at a time:
-chain.addWordToChain("random");
-
-//OR add all the words in an array at once:
-const dictionary = ["hello","foswig"];
-chain.addWordsToChain(dictionary);
 
 // Generate a random word with a minimum of 5 characters, a maximum of 10 letters, 
 // and that cannot be a match to any of the input dictionaries words.
@@ -32,7 +29,7 @@ const constraints = {
   maxLength 10, 
   allowDuplicates: false
 };
-const word = chain.generateWord(constraints);
+const word = chain.generate(constraints);
 ```
 
   
@@ -42,7 +39,7 @@ const word = chain.generateWord(constraints);
 - *maxLength* (optional, default: 0): Maximum length of the word, 0 indicates no max length)
 - *allowDuplicates* (optional, default: true): Can the output be an exact match of a dictionary input word or not
 - *maxAttempts* (optional, default: 25): The maximum number of attempts to generate a word matching the constraints above before throwing an error, use 0 to allow infinite attempts, but this may result in hangs if the constraints cannot be satisfied.
-
+- *random* (optional, default: Math.random): A function that returns a random floating point number between 0-1.
 
 ## License
 

@@ -1,6 +1,6 @@
 {
   "name": "foswig",
-  "version": "2.0.1",
+  "version": "3.0.0",
   "description": "A library that can generate legible pseudo random words based off an input dictionary using markov chains",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
