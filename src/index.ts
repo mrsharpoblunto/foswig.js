@@ -142,9 +142,8 @@ export default class MarkovChain {
       }
     } while (
       // we don't want to output any exact replicas from the input dictionary
-      repeat ||
-      (!allowDuplicates && isDuplicate(word, this.duplicates)) ||
-      (maxAttempts > 0 && ++attempts < maxAttempts)
+      (repeat || (!allowDuplicates && isDuplicate(word, this.duplicates))) &&
+      (maxAttempts <= 0 || ++attempts < maxAttempts)
     );
     if (maxAttempts > 0 && attempts >= maxAttempts) {
       throw new Error(
