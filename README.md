@@ -8,7 +8,13 @@ A JavaScript library which allows you to easily create [Markov chains](http://en
 ## Usage
 
 ```javascript
+// If you're using the following
+// - A bundler like Rollup or Webpack
+// - node>=12 and have set "type": "module" in your package.json
+// - node>=12 and the parent file has a .mjs extension
 import Foswig from 'foswig';
+// otherwise require using commonjs
+const Foswig = require('foswig').default;
 
 // Create the Markov chain and specify the order of the chain & input dictionary
 // The order (an integer that is greater than 0) indicates how many previous 
@@ -25,9 +31,9 @@ const chain = new Foswig(3, [
 // Generate a random word with a minimum of 5 characters, a maximum of 10 letters, 
 // and that cannot be a match to any of the input dictionaries words.
 const constraints = { 
-  minLength: 5, 
-  maxLength 10, 
-  allowDuplicates: false
+  minLength: 2, 
+  maxLength: 10, 
+  allowDuplicates: true
 };
 const word = chain.generate(constraints);
 ```

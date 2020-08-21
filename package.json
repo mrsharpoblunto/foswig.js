@@ -1,25 +1,32 @@
 {
   "name": "foswig",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "A library that can generate legible pseudo random words based off an input dictionary using markov chains",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "./lib/index.cjs",
+  "types": "./lib/index.d.ts",
+  "module": "./lib/index.mjs",
+  "exports": {
+    "import": "./lib/index.mjs",
+    "require": "./lib/index.cjs"
+  },
   "dependencies": {},
   "devDependencies": {
-    "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.9.6",
-    "@babel/preset-env": "^7.9.6",
-    "@babel/preset-typescript": "^7.9.0",
-    "babel-jest": "^26.0.1",
-    "jest": "^26.0.1",
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.11.4",
+    "@babel/preset-env": "^7.11.0",
+    "@babel/preset-typescript": "^7.10.4",
+    "babel-jest": "^26.3.0",
+    "jest": "^26.4.1",
     "prettier": "^2.0.5",
     "rimraf": "^3.0.2",
-    "typescript": "^3.9.2"
+    "typescript": "^3.9.7"
   },
   "scripts": {
     "test": "jest src/",
-    "build": "tsc",
-    "prepare": "npm run test && rimraf dist && npm run build"
+    "build:cjs": "tsc -p tsconfig-cjs.json && mv lib/index.js lib/index.cjs",
+    "build:esm": "tsc -p tsconfig.json && mv lib/index.js lib/index.mjs",
+    "build": "npm run build:esm && npm run build:cjs",
+    "prepare": "npm run test && rimraf lib && npm run build"
   },
   "repository": {
     "type": "git",
