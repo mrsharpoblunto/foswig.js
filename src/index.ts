@@ -9,7 +9,7 @@ interface MarkovNode {
 }
 
 interface TrieNode {
-  children: {[key: string]: TrieNode};
+  children: { [key: string]: TrieNode };
 }
 
 type RandomGenerator = () => number;
@@ -24,13 +24,13 @@ export default class MarkovChain {
    */
   constructor(order: number, words: Array<string>) {
     this.order = order;
-    this.duplicates = {children: {}};
-    this.start = {character: '', neighbors: []};
+    this.duplicates = { children: {} };
+    this.start = { character: '', neighbors: [] };
     this.init(words);
   }
 
   private init(words: Array<string>) {
-    const map: {[key: string]: MarkovNode} = {};
+    const map: { [key: string]: MarkovNode } = {};
     for (const word of words) {
       this.addToDuplicatesTrie(word.toLowerCase());
 
@@ -44,7 +44,7 @@ export default class MarkovChain {
         }
         let newNode = map[key];
         if (!newNode) {
-          newNode = {character: ch, neighbors: []};
+          newNode = { character: ch, neighbors: [] };
           map[key] = newNode;
         }
 
@@ -72,7 +72,7 @@ export default class MarkovChain {
     for (var i = 0; i < word.length; ++i) {
       var childNode = currentNode.children[word[i]];
       if (!childNode) {
-        childNode = {children: {}};
+        childNode = { children: {} };
         currentNode.children[word[i]] = childNode;
       }
       currentNode = childNode;
@@ -139,7 +139,7 @@ export default class MarkovChain {
       throw new Error(
         'Unable to generate a word with the given parameters after ' +
           attempts +
-          ' attempts',
+          ' attempts'
       );
     }
     return word;
