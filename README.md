@@ -28,7 +28,7 @@ const chain = new Foswig(3, [
 ]);
 
 
-// Generate a random word with a minimum of 5 characters, a maximum of 10 letters, 
+// Generate a random word with a minimum of 2 characters, a maximum of 10 letters, 
 // and that cannot be a match to any of the input dictionaries words.
 const constraints = { 
   minLength: 2, 
@@ -41,8 +41,8 @@ const word = chain.generate(constraints);
   
 ## Constraints
 
-- *minLength* (optional, default: 0): Minimum length of the word (optional, default: 0) 
-- *maxLength* (optional, default: 0): Maximum length of the word, 0 indicates no max length)
+- *minLength* (optional, default: 0): Minimum length of the word
+- *maxLength* (optional, default: 0): Maximum length of the word, 0 indicates no max length
 - *allowDuplicates* (optional, default: true): Can the output be an exact match of a dictionary input word or not
 - *maxAttempts* (optional, default: 25): The maximum number of attempts to generate a word matching the constraints above before throwing an error, use 0 to allow infinite attempts, but this may result in hangs if the constraints cannot be satisfied.
 - *random* (optional, default: Math.random): A function that returns a random floating point number between 0-1.
